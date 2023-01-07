@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            height: 600px;
+            width: 600px;
+            
+        }
+        .shape{
+            position: relative;
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            border: 2px solid black;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Your Reaction</h1>
+    <p>Click on the boxes and circles as quickly as you can</p>
+    <h2>Your time:</h2>
+    <div class="container">
+        <div class="shape">
+        </div>
+    </div>
+    <script>
+        var getShape =document.querySelector(".shape");
+
+        var startTime = new Date().getTime();
+        function shapeDisplay(){
+            startTime = new Date().getTime();
+            getShape.style.display="block";
+        }
+        setInterval(shapeDisplay,Math.random()*2000);
+        getShape.onclick=function(){
+            randomfeatures();
+            getShape.style.display="none";
+            var endTime = new Date().getTime();
+            var timeTaken = (endTime - startTime)/1000;
+            console.log(startTime.endTime);
+            document.querySelector("h4").innerHTML=`Your time: ${timeTaken}`;    
+        }
+
+        function randomfeatures(){
+            var rgb1 = Math.floor(Math.random()*257) ,
+            rgb2 = Math.floor(Math.random()*257) ,
+            rgb3 = Math.floor(Math.random()*257) ;
+            
+            getShape.style.background = `rgb(${rgb1},${rgb2},${rgb3})`;
+
+            var verticalPosition = Math.floor(Math.random()*500) , 
+            horizontalPosition = Math.floor(Math.random()*500) ;
+
+            getShape.style.top = verticalPosition + "px";
+            getShape.style.left = horizontalPosition + "px";
+            
+            if(rgb1>=80){
+                getShape.style.height = rgb1 +"px";
+                getShape.style.width = rgb1 +"px";
+            }
+
+            if(Math.random() > 0.5){
+                getShape.style.borderRadius = "50%";
+            }else{
+                getShape.style.borderRadius ="0";
+            }
+            
+
+        }
+
+        
+        
+
+
+    </script>
+</body>
+</html>
